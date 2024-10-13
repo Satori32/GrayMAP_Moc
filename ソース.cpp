@@ -8,8 +8,11 @@ struct RGBOne{
 	T C = 0;
 };
 
-struct Gray {
+struct Gray8 {
 	uint8_t C = 0;
+};
+struct Gray16 {
+	uint16_t C = 0;
 };
 
 struct RGB16
@@ -105,7 +108,7 @@ bool IsNULL(SurfaceT<T>& In) {
 int main() {
 	SurfaceT<RGB16> S16 = ConstructSurfaceT<RGB16>(16, 16);
 	RGB16 C;
-	C.RGBA.R = 16;
+	C.RGBA.Color.R = 16;
 	SetPixel(S16, 8, 8, C);
 
 	Free(S16);

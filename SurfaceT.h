@@ -9,10 +9,13 @@ struct RGBOne {
 	T C = 0;
 };
 
-struct Gray {
+struct Gray8 {
 	uint8_t C = 0;
 };
 
+struct Gray16 {
+	uint16_t C = 0;
+};
 struct RGB16
 {
 	union RGBA {
