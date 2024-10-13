@@ -50,3 +50,12 @@ template<class T>
 bool IsNULL(SurfaceT<T>& In) {
 	return IsNULL(In.M);
 }
+template<class T>
+bool Fill(SurfaceT<T>& In, const T& C) {
+	for (size_t i = 0; i < Height(In); i++) {
+		for (size_t j = 0; j < Width(In); j++) {
+			(*Index(In, j, i)) = C;
+		}
+	}
+	return true;
+}

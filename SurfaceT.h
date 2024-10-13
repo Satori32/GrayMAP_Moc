@@ -61,3 +61,4 @@ template<class T> bool Resize(SurfaceT<T>& In, size_t Width, size_t Height);
 template<class T> T* Index(SurfaceT<T>& In, size_t X, size_t Y);
 template <class T> bool SetPixel(SurfaceT<T>& In, size_t X, size_t Y, const T& P);
 template<class T> bool IsNULL(SurfaceT<T>& In);
+template<class T> bool Fill(SurfaceT<T>& In, const T& C);
