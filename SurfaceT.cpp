@@ -1,53 +1,4 @@
-/** /
-#include <stdio.h>
-
-#include "MemoryAllocator.h"
-
-template<class T>
-struct RGBOne{
-	T C = 0;
-};
-
-struct Gray {
-	uint8_t C = 0;
-};
-
-struct RGB16
-{
-	union RGBA {
-		struct Color
-		{
-			uint16_t G : 5;
-			uint16_t B : 5;
-			uint16_t R : 5;
-			uint16_t A : 1;
-		};
-		uint16_t RGBA = 0;
-	};
-};
-struct RGB24
-{
-	uint8_t B = 0;
-	uint8_t G = 0;
-	uint8_t R = 0;
-};
-
-struct RGB32
-{
-	uint8_t B = 0;
-	uint8_t G = 0;
-	uint8_t R = 0;
-	uint8_t A = 0;
-};
-
-template<class T>
-struct  SurfaceT
-{
-	Memory<T> M;
-	size_t Width = 0;
-	size_t Height = 0;
-	typedef T Type;
-};
+#include "SurfaceT.h"
 
 template<class T>
 SurfaceT<T> ConstructSurfaceT(size_t Width, size_t Height) {
@@ -60,11 +11,11 @@ SurfaceT<T> ConstructSurfaceT(size_t Width, size_t Height) {
 }
 
 template<class T>
-size_t Width(SurfaceT<T>& In){
+size_t Width(SurfaceT<T>& In) {
 	return In.Width;
 }
 template<class T>
-size_t Height(SurfaceT<T>& In){
+size_t Height(SurfaceT<T>& In) {
 	return In.Height;
 }
 template<class T>
@@ -77,7 +28,7 @@ bool Free(SurfaceT<T>& In) {
 }
 template<class T>
 bool Resize(SurfaceT<T>& In, size_t Width, size_t Height) {
-	if (ReAllocateMemory(In.M, Width*Height) == false) { return false; }
+	if (ReAllocateMemory(In.M, Width * Height) == false) { return false; }
 	In.Width = Width;
 	In.Height = Height;
 
@@ -98,15 +49,4 @@ bool SetPixel(SurfaceT<T>& In, size_t X, size_t Y, const T& P) {
 template<class T>
 bool IsNULL(SurfaceT<T>& In) {
 	return IsNULL(In.M);
-}
-/**/
-
-#include "SurfaceT.h"
-int main() {
-	SurfaceT<RGB16> S16 = ConstructSurfaceT<RGB16>(16, 16);
-	RGB16 C;
-	C.RGBA.R = 16;
-	SetPixel(S16, 8, 8, C);
-
-	Free(S16);
 }
