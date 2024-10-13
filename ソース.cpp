@@ -2,6 +2,15 @@
 
 #include "MemoryAllocator.h"
 
+template<class T>
+struct RGBOne{
+	T C = 0;
+};
+
+struct GRay {
+	uint8_t C = 0;
+};
+
 struct RGB16
 {
 	union RGBA {
@@ -41,7 +50,7 @@ struct  SurfaceT
 
 template<class T>
 SurfaceT<T> ConstructSurfaceT(size_t Width, size_t Height) {
-	SurfaceT<T> S:
+	SurfaceT<T> S;
 	S.M = ConstructMemroy<T>(Width * Height);
 	S.Width = Width;
 	S.Height = Height;
@@ -88,4 +97,11 @@ bool SetPixel(SurfaceT<T>& In, size_t X, size_t Y, const T& P) {
 template<class T>
 bool IsNULL(SurfaceT<T>& In) {
 	return IsNULL(In.M);
+}
+
+int main() {
+	SurfaceT<RGB16> S16 = ConstructSurfaceT<RGB16>(16, 16);
+	RGB16 C;
+	C.RGBA.R = 16;
+	SetPixel(S16, 8, 8, C);
 }
